@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,6 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const Index = () => {
+  const router = useRouter()
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -23,7 +25,6 @@ const Index = () => {
       password: "",
     },
     validationSchema,
-    
     onSubmit: async (values) => {
       try {
         const { email, password } = values;
@@ -33,8 +34,9 @@ const Index = () => {
           password
         );
         const result = userCredential.user;
-        localStorage.setItem("token" ,result.accessToken)
+        localStorage.setItem("token", result.accessToken)
         toast.success("User Login Successfully");
+        router.push("/")
       } catch (error) {
         console.error("Login error:", error);
         toast.error(error.message);
@@ -55,14 +57,13 @@ const Index = () => {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    value={formik.values.email}
+                    //value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${
-                      formik.touched.email && formik.errors.email
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${formik.touched.email && formik.errors.email
+                      ? "is-invalid"
+                      : ""
+                      }`}
                   />
                   {formik.touched.email && formik.errors.email && (
                     <span className="invalid-feedback">
@@ -75,14 +76,13 @@ const Index = () => {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={formik.values.password}
+                    //value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${
-                      formik.touched.password && formik.errors.password
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${formik.touched.password && formik.errors.password
+                      ? "is-invalid"
+                      : ""
+                      }`}
                   />
                   {formik.touched.password && formik.errors.password && (
                     <span className="invalid-feedback">

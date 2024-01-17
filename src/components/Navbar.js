@@ -3,39 +3,52 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [login, setLogin] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) setLogin(true);
-      else setLogin(false);
+      if (user) {
+        setLogin(true);
+      } else {
+        setLogin(false);
+      }
     });
   }, []);
 
   return (
-  
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" >
       <Container>
         <Navbar.Brand href="/">BlogBlitz</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
           {login ? (
-            <Nav>
-              <Nav.Link href="#deets" onClick={() => auth.signOut()}>Logout</Nav.Link>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Link className="nav-link" href="/blogs">
+                Blogs
+              </Link>
+              <Link
+                className="nav-link"
+                href="/"
+                onClick={async () => {
+                  await auth.signOut();
+                  router.push("/");
+                }}
+              >
+                Logout
+              </Link>
             </Nav>
           ) : (
-            <Nav>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link  href="/register">
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Link className="nav-link" href="/login">
+                Login
+              </Link>
+              <Link className="nav-link" href="/register">
                 Register
-              </Nav.Link>
+              </Link>
             </Nav>
           )}
         </Navbar.Collapse>

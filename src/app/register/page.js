@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
 import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -18,6 +18,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const Index = () => {
+  const router = useRouter()
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -39,6 +40,7 @@ const Index = () => {
           displayName: name,
         });
         toast.success("User Register Successfully");
+        router.push("/login")
       } catch (error) {
         console.error("Registration error:", error);
         toast.error(error.message);
@@ -62,11 +64,10 @@ const Index = () => {
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${
-                      formik.touched.name && formik.errors.name
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${formik.touched.name && formik.errors.name
+                      ? "is-invalid"
+                      : ""
+                      }`}
                   />
                   {formik.touched.name && formik.errors.name && (
                     <span className="invalid-feedback">
@@ -82,11 +83,10 @@ const Index = () => {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${
-                      formik.touched.email && formik.errors.email
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${formik.touched.email && formik.errors.email
+                      ? "is-invalid"
+                      : ""
+                      }`}
                   />
                   {formik.touched.email && formik.errors.email && (
                     <span className="invalid-feedback">
@@ -102,11 +102,10 @@ const Index = () => {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${
-                      formik.touched.password && formik.errors.password
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${formik.touched.password && formik.errors.password
+                      ? "is-invalid"
+                      : ""
+                      }`}
                   />
                   {formik.touched.password && formik.errors.password && (
                     <span className="invalid-feedback">
