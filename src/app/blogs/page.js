@@ -90,12 +90,13 @@ const Index = () => {
         </Link>
       </div>
       <div className="row">
+      <p>Welcome {auth?.currentUser?.displayName} !!</p>
         <h3>Your Blogs</h3>
         {blogData.length > 0 ? (
           blogData.map((blog) => (
             <div key={blog.id} className="col-md-4 mb-4">
               <Card>
-                <Card.Img variant="top" src={blog.image} />
+                <Card.Img variant="top" src={blog.image} style={{ height: "300px" }} />
                 <Card.Body>
                   <Card.Title>{truncateText(blog.title, 10)}</Card.Title>
                   <Card.Text>{truncateText(blog.content, 20)}</Card.Text>

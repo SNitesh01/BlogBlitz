@@ -2,14 +2,17 @@
 import { auth, db } from "@/lib/firebase";
 import truncateText, { formatTimestampToDate } from "@/lib/utils";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Index = ({ params }) => {
   const { id } = params;
   const [blogData, setBlogData] = useState();
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
+  const router = useRouter()
   useEffect(() => {
     const fetchSingleBlog = async () => {
       try {
@@ -31,6 +34,11 @@ const Index = ({ params }) => {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
+    if(!auth.currentUser){
+      toast.warning("Please login first")
+      router.push("/login")
+      return
+    }
     const updatedComments = arrayUnion({
       text: newComment,
       created_at: Date.now(),

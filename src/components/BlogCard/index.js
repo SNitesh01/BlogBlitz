@@ -11,13 +11,7 @@ const BlogCard = ({ blog }) => {
 
   return (
     <Card className="mt-5">
-      {/* {video && (
-                <video width="100%" height="180" controls>
-                    <source src={video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            )} */}
-      <Card.Img variant="top" src={image} />
+      <Card.Img variant="top" src={image} style={{ height: "300px" }}/>
       <Card.Body>
         <Card.Title>{truncateText(title, 5)}</Card.Title>
         <Card.Text>{truncateText(content, 20)}</Card.Text>

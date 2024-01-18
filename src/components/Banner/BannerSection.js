@@ -1,6 +1,7 @@
 import React from "react";
 import "./BannerSection.css";
 import Link from "next/link";
+import { auth } from "@/lib/firebase";
 
 const BannerSection = () => {
   return (
@@ -21,7 +22,9 @@ const BannerSection = () => {
             templates,
             <br /> each with versatile layouts and myriad background images.
           </p>
-          <Link href="/login">Get started now</Link>
+          <Link href={auth.currentUser ? "/blogs/create" : "/login"}>
+            Create Blog
+          </Link>
         </div>
       </div>
     </section>
