@@ -6,6 +6,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import avtaricon from "../../../public/images/useravtat.png";
+import Image from "next/image";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -17,7 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const Index = () => {
-  const router = useRouter()
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -34,9 +36,9 @@ const Index = () => {
           password
         );
         const result = userCredential.user;
-        localStorage.setItem("token", result.accessToken)
+        localStorage.setItem("token", result.accessToken);
         toast.success("User Login Successfully");
-        router.push("/")
+        router.push("/");
       } catch (error) {
         console.error("Login error:", error);
         toast.error(error.message);
@@ -47,23 +49,37 @@ const Index = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-5">
+          <h3 className="text-start">Login !!</h3>
+          <p className="text-muted">
+            Log in to share your thoughts and experiences with the community.
+            Once logged in, you can create a new blog post below.
+          </p>
           <div className="card">
+            <div className="text-center">
+              <Image
+                src={avtaricon}
+                id="imageAsBackground"
+                alt="img"
+                height={90}
+                width={90}
+              />
+            </div>
             <div className="card-body">
-              <h2>Login</h2>
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-3">
+                  <label>Enter Your Email</label>
                   <input
                     type="email"
                     name="email"
                     placeholder="Email"
-                    //value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${formik.touched.email && formik.errors.email
-                      ? "is-invalid"
-                      : ""
-                      }`}
+                    className={`form-control ${
+                      formik.touched.email && formik.errors.email
+                        ? "is-invalid"
+                        : ""
+                    }`}
                   />
                   {formik.touched.email && formik.errors.email && (
                     <span className="invalid-feedback">
@@ -72,17 +88,18 @@ const Index = () => {
                   )}
                 </div>
                 <div className="mb-3">
+                  <label>Enter Your Password</label>
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
-                    //value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`form-control ${formik.touched.password && formik.errors.password
-                      ? "is-invalid"
-                      : ""
-                      }`}
+                    className={`form-control ${
+                      formik.touched.password && formik.errors.password
+                        ? "is-invalid"
+                        : ""
+                    }`}
                   />
                   {formik.touched.password && formik.errors.password && (
                     <span className="invalid-feedback">

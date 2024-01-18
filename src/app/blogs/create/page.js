@@ -80,10 +80,13 @@ const Page = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <Card style={{ maxWidth: "700px", margin: "auto" }}>
+    <div className="container mt-5 mb-5" style={{ maxWidth: "700px", margin: "auto" }}>
+        <h3 className="text-start">Create Post</h3>
+          <p className="text-muted">
+            Share your thoughts and experiences with the community. Create a new blog post below.
+          </p>
+      <Card >
         <Card.Body>
-          <Card.Title className="text-start">Create Post</Card.Title>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="title">
               <Form.Label className="mt-2 mb-0">Title</Form.Label>
@@ -105,6 +108,7 @@ const Page = () => {
                 name="content"
                 value={blogData.content}
                 onChange={handleInputChange}
+                style={{ height: "200px" }}
                 required
               />
             </Form.Group>
