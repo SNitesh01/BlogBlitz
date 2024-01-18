@@ -89,7 +89,7 @@ const Index = () => {
           Create Blog
         </Link>
       </div>
-      <div className="row hsixty">
+      <div className="row">
       <p>Welcome {auth?.currentUser?.displayName} !!</p>
         <h3>Your Blogs</h3>
         {blogData.length > 0 ? (
