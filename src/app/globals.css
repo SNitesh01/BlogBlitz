@@ -84,9 +84,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-.h3{
-  color: black;
-}
+
 body {
   color: rgb(var(--foreground-rgb));
 }
@@ -94,6 +92,9 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+h3{
+  color: black;
 }
 
 @media (prefers-color-scheme: dark) {
