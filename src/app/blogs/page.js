@@ -82,7 +82,7 @@ const Index = () => {
     <div className="container mt-5 mb-5">
       <div className="d-flex justify-content-end mb-3">
         <Link
-          style={{ border: "1px solid black" }}
+          style={{ border: "1px solid black", color:"black" }}
           className="nav-link p-1"
           href="/blogs/create"
         >
@@ -101,13 +101,24 @@ const Index = () => {
                   <Card.Text>{truncateText(blog.content, 20)}</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
                     <Button
-                      variant="success"
+                      variant={!blog.published ? "success" : "danger"}
                       size="sm"
                       onClick={() => handlePublish(blog)}
                     >
                       {blog.published ? "Unpublish" : "Publish"}
                     </Button>
+                    {blog.published ?  <div className="d-flex justify-content-between align-items-center">
+                    <Button
+                      variant="success"
+                      size="sm"
+                      onClick={() => router.push(`/blogs/${blog.id}`)}
+                    >
+                      View
+                    </Button>
+                  
+                  </div>:""}
                   </div>
+                
                 </Card.Body>
               </Card>
             </div>

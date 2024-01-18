@@ -13,14 +13,15 @@ const BannerSection = () => {
         />
         <div className="ban_text">
           <strong>
-            <span>Meeting current</span>
-            <br /> needs now
+            <span>Express your passions</span>
+            <br /> ideas on your terms
           </strong>
           <p>
-            You can prioritize a child’s mental, emotional, <br />
-            behavioral, and physical health{" "}
+            Craft your unique blog with style. Choose from user-friendly
+            templates,
+            <br /> each with versatile layouts and myriad background images.
           </p>
-          <Link href="/register">Get started now</Link>
+          <Link href="/login">Get started now</Link>
         </div>
       </div>
     </section>

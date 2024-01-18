@@ -80,7 +80,7 @@ const Page = () => {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-5">
       <Card style={{ maxWidth: "700px", margin: "auto" }}>
         <Card.Body>
           <Card.Title className="text-start">Create Post</Card.Title>
