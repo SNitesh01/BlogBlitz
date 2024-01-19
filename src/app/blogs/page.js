@@ -90,7 +90,7 @@ const Index = () => {
         </Link>
       </div>
       <div className="row">
-      {/* <p>Welcome {auth?.currentUser?.displayName} !!</p> */}
+      <p>Welcome {auth?.currentUser?.displayName} !!</p>
         <h3>Your Blogs</h3>
         {blogData.length > 0 ? (
           blogData.map((blog) => (
@@ -98,8 +98,8 @@ const Index = () => {
               <Card>
                 <Card.Img variant="top" src={blog.image} style={{ height: "300px" }} />
                 <Card.Body>
-                  <Card.Title>{truncateText(blog.title, 10)}</Card.Title>
-                  <Card.Text>{truncateText(blog.content, 20)}</Card.Text>
+                  <Card.Title>{truncateText(blog.title, 5)}</Card.Title>
+                  <Card.Text>{truncateText(blog.content, 15)}</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
                     <Button
                       variant={!blog.published ? "success" : "danger"}
@@ -125,7 +125,7 @@ const Index = () => {
             </div>
           ))
         ) : (
-          <div className="col-md-12 text-center">
+          <div className="col-md-12 text-center mt-5">
             <p>You have not created any posts yet.</p>
           </div>
         )}

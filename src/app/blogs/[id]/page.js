@@ -81,7 +81,7 @@ const Index = ({ params }) => {
                 roundedCircle
                 alt="img"
               />
-              <span> {blogData.userName}</span>
+              <span className="clr-black"> {blogData.userName}</span>
             </div>
             <div className="col-md-6">
               <img
