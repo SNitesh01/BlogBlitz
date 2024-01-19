@@ -90,7 +90,7 @@ const Index = () => {
         </Link>
       </div>
       <div className="row">
-      <p>Welcome {auth?.currentUser?.displayName} !!</p>
+      {/* <p>Welcome {auth?.currentUser?.displayName} !!</p> */}
         <h3>Your Blogs</h3>
         {blogData.length > 0 ? (
           blogData.map((blog) => (
